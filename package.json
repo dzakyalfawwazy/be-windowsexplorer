@@ -7,7 +7,7 @@
     "seed": "ts-node prisma/seed.ts",
     "dev": "nodemon",
     "build": "tsc",
-    "start": "node builds/server.js"
+    "start": "node builds/index.js"
   },
   "keywords": [],
   "author": "",
