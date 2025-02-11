@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Folder {
+  id       Int       @id @default(autoincrement())
+  name     String
+  parentId Int?
+  parent   Folder?   @relation("FolderParent", fields: [parentId], references: [id])
+  children Folder[]  @relation("FolderParent")
+
+  files    File[]    @relation("FolderFiles")
+}
+
+model File {
+  id        Int     @id @default(autoincrement())
+  name      String
+  extension String
+  folderId  Int
+  folder    Folder @relation("FolderFiles", fields: [folderId], references: [id])
+}
+
